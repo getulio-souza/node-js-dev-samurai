@@ -30,4 +30,17 @@ server.get('/customers/:id', (req, res) => {
     return res.status(status).json(customer)
 })
 
+//post - criar novo customer
+server.post('/customers', (req, res) => {
+    const {name, site} = req.body; //corpo que vai ser enviado na requisição
+    const id = customers[customers.length -1].id + 1 //obtendo o último id cadastrado e somando mais 1
+    const newCustomer = {id, name, site}; //definindo o que vai dentro do body
+
+    //jogamos dentro do array de customers o novo customer
+    customers.push(newCustomer)
+
+    //retornar a resposta com o novo costumer criado
+    return res.status(201).json(newCustomer)
+})
+
 server.listen(3000)
