@@ -2,25 +2,24 @@ const express = require('express');
 
 const server = express();
 
-server.get('/hello', (req, res) => {
-    //obtendo os paramentos para a rota
-    const { nome, idade } = req.query;
+// server.get('/hello', (req, res) => {
+//     //obtendo os paramentos para a rota
+//     const { nome, idade } = req.query;
 
-    return res.json({
-        title: 'hello world',
-        message: `hello, ${nome}, how are you?`,
-        idade: idade
-    })
-})
+//     return res.json({
+//         title: 'hello world',
+//         message: `hello, ${nome}, how are you?`,
+//         idade: idade
+//     })
+// })
 
 //nome
 
-server.get('/hello:nome', (req, res) => {
-    const nome = req.params.nome;
+server.get('/hello/', (req, res) => {
+    const {nome} = req.params;
 
     return res.json({
-        title: 'hello world 1',
-        message: `hello, ${nome}, how are you?`,
+        message: `hello, ${nome}, how are you? I hope you are doing well!`,
     })
 })
 
