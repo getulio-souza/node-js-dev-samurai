@@ -44,3 +44,5 @@ server.post('/usuarios', (req, res) => {
 })
 
 server.listen(4000)
+
+// 01:43 > https://www.youtube.com/watch?v=5UgIxA32Q5I&t=3769s
