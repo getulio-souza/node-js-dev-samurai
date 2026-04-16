@@ -21,6 +21,8 @@ server.get('/customers/:id', (req, res) => {
     const customer = customers.find((item)=> item.id === id);
     const status = customer ? 200 : 404;
 
+    console.log('get: /customers/:id', JSON.stringify(customer))
+
     if(!customer) {
         return res.status(404).json({
             message: 'Cliente não encontrado'
