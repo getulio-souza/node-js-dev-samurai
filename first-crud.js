@@ -43,4 +43,40 @@ server.post('/customers', (req, res) => {
     return res.status(201).json(newCustomer)
 })
 
+//put
+server.put('/customers/:id', (req, res) => {
+  const id = Number(req.params.id);
+  const { name, site } = req.body;
+
+  const index = customers.findIndex(item => item.id === id);
+  console.log('index:', index)
+  const status = index >= 0 ? 200 : 404
+
+  if (index >= 0) {
+      customers[index] = {id: Number(id), name, site}
+  }
+  
+  return res.status(status).json(customers[index])
+})
+
+//delete
+
+server.delete('customers/:id', (req, res) => {
+  //receber o id
+  const id = req.params.id;
+
+  //localizar o index
+  const index = customers.findIndex(item => item.id === id);
+  const status = index >= 0 ? 200 : 404;
+
+  //se o index for maior do que zero, significa que achei o customer que procurava
+  if (index >= 0) {
+    //o splice remove o objeto na posicao atual (primeiro parametro) e define a quantidade que sera removida(segundo parametro)
+    costumers.splice(index, 1)
+  }
+
+  //no caso do delete, a gente passa o json vazio porque o customer deletado nao precisa ser retornado
+  return res.status(status).json()
+})
+
 server.listen(3000)
