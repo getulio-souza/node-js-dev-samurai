@@ -1,13 +1,13 @@
 {
   "name": "dominando-nodejs",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/server.js",
   "license": "MIT",
   "dependencies": {
     "express": "^5.2.1",
     "nodemon": "^3.1.14"
   },
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon server.js"
   }
 }
