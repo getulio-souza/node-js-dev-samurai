@@ -9,5 +9,8 @@
   },
   "scripts": {
     "dev": "nodemon server.js"
+  },
+  "devDependencies": {
+    "sucrase": "^3.35.1"
   }
 }
