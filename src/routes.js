@@ -1,8 +1,8 @@
-const { Router } = require('express');
+import { Router } from 'express';
 
 const routes = new Router();
 
-const customers = require('./app/controllers/customersController')
+import customers from './app/controllers/customersController'
 
 routes.get("/customers", customers.index);
 routes.get("/customers/:id", customers.show);
