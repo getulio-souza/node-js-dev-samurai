@@ -1,3 +1,7 @@
+import Customer from "../models/customer"
+
+//a ideia agora nao eh mais retornar o array de customers, mas sim os registros do nosso banco de dados
+
 let customers = [
     {id: 1, name: 'dev samurai', site: 'http://devsamurai.com.br'},
     {id: 2, name: 'Google', site: 'http://google.com'},
@@ -9,8 +13,12 @@ class CustomerController {
   }
   
   //listagem dos customers
-  index(req, res) {
-    return res.json(customers)
+  async index(req, res) {
+    const data = await Customer.findAll({
+      limit: 1000
+    });
+
+    return res.json(data)
   }
   
   //recupera um customer
