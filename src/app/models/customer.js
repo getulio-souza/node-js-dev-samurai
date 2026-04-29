@@ -14,6 +14,11 @@ class Customer extends Model{
       tableName: "customers"
     })
   }
+
+  //associando o customer ao contact - relação de um para muitos (hasMany)
+  static associate(models){
+    this.hasMany(models.Contact)
+  }
 }
 
 export default Customer;
