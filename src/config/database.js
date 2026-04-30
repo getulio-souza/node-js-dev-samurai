@@ -4,9 +4,9 @@ module.exports = {
   port: 5432,
   username: "postgres",
   password: "123456",
-  database: "teste-dominando-nodejs",
+  database: "bancoGetulio",
   define: {
-    timestamp: true, //cria duas colunas - createdAt, updatedAt,
+    timestamps: true, //cria duas colunas - createdAt, updatedAt,
     underscored: true //nomenclatura (camelCase)
   }
 }

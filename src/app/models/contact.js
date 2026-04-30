@@ -9,7 +9,9 @@ class Contact extends Model {
                 status: Sequelize.ENUM("ACTIVE", "ARQUIVED"),
             },
             {
-                sequelize
+                sequelize,
+                modelName: "Contact",
+                tableName: "contacts"
             }
         )
     }

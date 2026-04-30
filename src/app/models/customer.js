@@ -11,12 +11,16 @@ class Customer extends Model{
       },
       {
       sequelize,
+      modelName: "Customer",
       tableName: "customers"
     })
   }
 
   //associando o customer ao contact - relação de um para muitos (hasMany)
   static associate(models){
+    console.log('models:', models);
+    console.log('Contact:', models.Contact);
+
     this.hasMany(models.Contact)
   }
 }

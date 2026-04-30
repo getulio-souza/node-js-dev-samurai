@@ -10,9 +10,13 @@ class User extends Model{
         provider: Sequelize.BOOLEAN,
       },
       {
-        sequelize
+        sequelize,
+        modelName: "User",
+        tableName: "users"
         
       }
     )
   }
 }
+
+export default User
