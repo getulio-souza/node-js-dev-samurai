@@ -14,6 +14,20 @@ class CustomerController {
   
   //listagem dos customers
   async index(req, res) {
+
+    //parametros de consulta
+    const {
+      name, 
+      email,
+      status,
+      createdBefore,
+      createdAfter,
+      updatedBefore,
+      updatedAfter,
+      sort
+    } = req.query
+
+
     const data = await Customer.findAll({
       limit: 1000
     });
