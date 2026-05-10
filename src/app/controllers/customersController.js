@@ -57,7 +57,7 @@ class CustomerController {
       where = {
         ...where,
         status: {
-          [Op.in]: status.split(",").map(item => item.toUpperCase());
+          [Op.in]: status.split(",").map(item => item.toUpperCase())
         }
       }
     }
