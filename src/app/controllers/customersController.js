@@ -104,7 +104,10 @@ class CustomerController {
 
 
     const data = await Customer.findAll({
-      limit: 1000
+      where,
+      order,
+      limit,
+      offset: limit * page - limit,
     });
 
     return res.json(data)
