@@ -15,6 +15,9 @@ class Database {
 
     //chamando o metodo init
     this.init();
+
+    //chamando o metodo associate
+    this.associate();
   }
 
   //criamos o metodo init para chamar o metodo init de cada model
@@ -25,6 +28,14 @@ class Database {
 
     models.forEach(model => {
       if(model.associate){
+        model.associate(this.connection.models)
+      }
+    })
+  }
+
+  associate() {
+    models.forEach(model => {
+      if (model.associate) {
         model.associate(this.connection.models)
       }
     })

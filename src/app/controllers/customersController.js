@@ -1,5 +1,6 @@
 import { Op } from "sequelize";
 import Customer from "../models/customer"
+import Contact from "../models/contact"
 import {parseISO} from "date-fns"
 
 //a ideia agora nao eh mais retornar o array de customers, mas sim os registros do nosso banco de dados
@@ -102,9 +103,14 @@ class CustomerController {
      order = sort.split(",").map(item => item.split(":"))
     }
 
-
     const data = await Customer.findAll({
       where,
+      include: [
+        {
+          model: Contact,
+          attributes: ["id"]
+        }
+      ],
       order,
       limit,
       offset: limit * page - limit,
