@@ -1,4 +1,4 @@
-import Sequelize from "sequelize";
+ import Sequelize from "sequelize";
 import config from "../config/database";
 
 //importando os models para joga-los dentro de um array
@@ -17,7 +17,7 @@ class Database {
     this.init();
 
     //chamando o metodo associate
-    this.associate();
+    // this.associate();
   }
 
   //criamos o metodo init para chamar o metodo init de cada model

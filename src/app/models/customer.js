@@ -3,19 +3,25 @@ import { Model, DataTypes } from "sequelize";
 
 class Customer extends Model{
   static init(sequelize) {
-    super.init(
+    
+  super.init(
     {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
-      status: DataTypes.ENUM("ACTIVE", "ARCHIVED")
-      },
-      {
+      status: {
+        type: DataTypes.ENUM,
+        values: ["ACTIVE", "ARCHIVED"]
+      }
+    },
+    {
       sequelize,
       modelName: "Customer",
       tableName: "customers"
-    })
-  }
+    }
+  );
 
+  return this;
+}
   //associando o customer ao contact - relação de um para muitos (hasMany)
   static associate(models){
     console.log('models:', models);

@@ -11,7 +11,7 @@ class Contact extends Model {
             {
                 sequelize,
                 modelName: "Contact",
-                tableName: "contacts"
+                tableName: "contact"
             }
         )
     }
