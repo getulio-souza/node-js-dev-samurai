@@ -1,7 +1,8 @@
 import { Op } from "sequelize";
 import Customer from "../models/customer"
 import Contact from "../models/contact"
-import {parseISO} from "date-fns"
+import { parseISO } from "date-fns"
+import * as Yup from "yup"
 
 //a ideia agora nao eh mais retornar o array de customers, mas sim os registros do nosso banco de dados
 
@@ -120,31 +121,47 @@ class CustomerController {
   }
   
   //recupera um customer
-  show(req, res) {
-    const id = Number(req.params.id);
-    const customer = customers.find((item)=> item.id);
-    const status = customer ? 200 : 404;
+  // show(req, res) {
+  //   const id = Number(req.params.id);
+  //   const customer = customers.find((item)=> item.id);
+  //   const status = customer ? 200 : 404;
 
-    if(!customer){
-      return res.status(404).json({
-        message: 'Cliente não encontrado'
-      })
+  //   if(!customer){
+  //     return res.status(404).json({
+  //       message: 'Cliente não encontrado'
+  //     })
+  //   }
+
+  //   return res.status(status).json(customer)
+  // }
+
+  async show(req, res) {
+    const customer = await Customer.findByPk(req.params.id)
+
+    //Para evitar que o retorno seja 200 com null, verificamos se o customer existe. Se NAO existir, retorna um json 404
+    if (!customer) {
+      return res.status(404).json({error: 'resource not found.'});
     }
-
-    return res.status(status).json(customer)
+    return res.json(customer)
   }
 
   //cria um customer
-  create(req, res) {
-    const {name, site} = req.body; //corpo que vai ser enviado na requisição
-    const id = customers[customers.length -1].id + 1 //obtendo o último id cadastrado e somando mais 1
-    const newCustomer = {id, name, site};
+  // create(req, res) {
+  //   const {name, site} = req.body; //corpo que vai ser enviado na requisição
+  //   const id = customers[customers.length -1].id + 1 //obtendo o último id cadastrado e somando mais 1
+  //   const newCustomer = {id, name, site};
 
-    //jogamos dentro do array de customers o novo customer
-    customers.push(newCustomer)
+  //   //jogamos dentro do array de customers o novo customer
+  //   customers.push(newCustomer)
 
-    //retornar a resposta com o novo costumer criado
-    return res.status(201).json(newCustomer)
+  //   //retornar a resposta com o novo costumer criado
+  //   return res.status(201).json(newCustomer)
+  // }
+
+  //o metodo create recebe todos os registros dentro do request body
+  async create(req, res) {
+    const customer = await Customer.create(req.body)
+    return res.status(201).json(customer)
   }
 
   //atualiza um customer
