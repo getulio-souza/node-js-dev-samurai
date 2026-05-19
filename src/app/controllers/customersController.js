@@ -6,13 +6,7 @@ import * as Yup from "yup"
 
 //a ideia agora nao eh mais retornar o array de customers, mas sim os registros do nosso banco de dados
 
-let customers = [
-    {id: 1, name: 'dev samurai', site: 'http://devsamurai.com.br'},
-    {id: 2, name: 'Google', site: 'http://google.com'},
-    {id: 3, name: 'UOL', site: 'http://uol.com.br'},
-];
-
-class CustomerController {
+class CustomerController { 
   constructor(){
   }
   
