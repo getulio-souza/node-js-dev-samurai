@@ -95,8 +95,9 @@ class ContactsController {
       where,
       include: [
         {
-          model: Contact,
-          attributes: ["id", "status"]
+          model: Customer,
+          attributes: ["id", "status"],
+          required: true
         },
       ],
       order,
@@ -104,8 +105,18 @@ class ContactsController {
       offset: limit * page - limit
     })
 
+    return res.json(data);
 
+  }
 
+  async show(req, res) {
+    const contact = await Contact.findByPk(req.params.id);
+
+    if (!contact) {
+      return res.status(404).json();
+
+      return res.json(contact);
+    }
   }
 }
 
