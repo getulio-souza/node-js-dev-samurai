@@ -21,7 +21,7 @@ class ContactsController {
     const page = req.query.page || 1;
     const limit = req.query.limit || 25;
 
-    let where = {};
+    let where = {customer_id: req.params.customerId};
     let order = [];
 
     if (name) {
@@ -118,6 +118,17 @@ class ContactsController {
       return res.json(contact);
     }
   }
+
+  //show
+  async show(req, res) {
+    const contact = await Contact.findByPk(req.params.id)
+
+    //Para evitar que o retorno seja 200 com null, verificamos se o customer existe. Se NAO existir, retorna um json 404
+    if (!contact) {
+      return res.status(404).json({error: 'resource not found.'});
+    }
+    return res.json(contact)
+  }
 }
 
-export default ContactsController
+export default new ContactsController()

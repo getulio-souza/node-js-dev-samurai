@@ -132,7 +132,7 @@ class CustomerController {
   async show(req, res) {
     const customer = await Customer.findByPk(req.params.id)
 
-    //Para evitar que o retorno seja 200 com null, verificamos se o customer existe. Se NAO existir, retorna um json 404
+    //Para evitar que o retorno seja 200 com null, verificamos se o contact existe. Se NAO existir, retorna um json 404
     if (!customer) {
       return res.status(404).json({error: 'resource not found.'});
     }
