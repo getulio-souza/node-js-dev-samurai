@@ -8,6 +8,7 @@ module.exports = {
   database: "teste-dominando-nodejs",
   define: {
     timestamps: true, //cria duas colunas - createdAt, updatedAt,
-    underscored: true //nomenclatura (camelCase)
+    underscored: true, //nomenclatura (camelCase)
+    underscoredAll: true
   }
 }

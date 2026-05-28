@@ -7,6 +7,7 @@ class Contact extends Model {
                 name: Sequelize.STRING,
                 email: Sequelize.STRING,
                 status: Sequelize.ENUM("ACTIVE", "ARQUIVED"),
+                customer_id: Sequelize.INTEGER
             },
             {
                 sequelize,
@@ -17,7 +18,12 @@ class Contact extends Model {
     }
 
     static associate(models){
-        this.belongsTo(models.Customer, {foreignKey: "customer_id"})
+      this.belongsTo(models.Customer, {
+        foreignKey: {
+          name: "customer_id",
+          as: "customer"
+          }
+        })
     }
 }
 
