@@ -103,11 +103,17 @@ class ContactsController {
   }
 
   async show(req, res) {
-    const contact = await Contact.findByPk(req.params.id)
+    console.log('req params:', req.params)
+    const { id } = req.params;
 
+    const contact = await Contact.findByPk(Number(id));
+
+    console.log('retorno de contact:', contact)
     //Para evitar que o retorno seja 200 com null, verificamos se o customer existe. Se NAO existir, retorna um json 404
     if (!contact) {
-      return res.status(404).json({error: 'resource not found.'});
+      return res.status(404).json(
+        { error: 'resource not found.' }
+      );
     }
     return res.json(contact)
   }
